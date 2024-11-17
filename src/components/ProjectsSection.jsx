@@ -16,10 +16,10 @@ const projects = [
     link: "https://example.com/portfolio",
   },
   {
-    title: "Data Query Tool",
+    title: "JSON Query Tool",
     description: "A tool to simplify building JSON queries.",
-    imageUrl: "https://via.placeholder.com/300x200",
-    link: "https://github.com/example/data-query-tool",
+    imageUrl: "./src/TectTool.jpg",
+    link: "https://main.d2zzehz4b8c8cm.amplifyapp.com/",
   },
 ];
 

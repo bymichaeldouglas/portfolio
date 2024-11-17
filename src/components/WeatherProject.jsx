@@ -1,4 +1,6 @@
+// src/components/WeatherProject.jsx
 import React, { useEffect, useState } from "react";
+import { FiInfo } from "react-icons/fi"; // Info icon from react-icons
 
 const WeatherProject = () => {
   const [weather, setWeather] = useState(null);
@@ -9,6 +11,7 @@ const WeatherProject = () => {
     city: null,
     country: null,
   });
+  const [showDetails, setShowDetails] = useState(false); // State to toggle detailed view
 
   const defaultCoordinates = { latitude: 38.9072, longitude: -77.0369 }; // Washington, DC
 
@@ -17,7 +20,7 @@ const WeatherProject = () => {
     try {
       const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`
       );
       const data = await response.json();
       setWeather({
@@ -73,28 +76,48 @@ const WeatherProject = () => {
   }, []);
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6">
-      <h3 className="text-xl font-bold mb-2">Weather-Based User Experience</h3>
-      <p className="text-gray-600 mb-4">
-        This project demonstrates the use of Geolocation API and IP-based fallback to fetch and display weather data.
-      </p>
-      {error && <p className="text-red-500">{error}</p>}
-      {locationInfo.city && locationInfo.country && (
-        <p className="text-gray-600">
-          Based on available information, your location is likely near {locationInfo.city}, {locationInfo.country}.
-        </p>
-      )}
-      {weather ? (
-        <div className="flex items-center space-x-4">
-          <img src={weather.icon} alt={weather.description} className="w-12 h-12" />
-          <div>
-            <h4 className="text-lg font-bold">{weather.city}</h4>
-            <p className="text-sm">{weather.description}</p>
-            <p className="text-lg font-semibold">{weather.temp}°C</p>
-          </div>
+    <div className="flex items-center space-x-2">
+      {/* Default Weather View (icon and temperature) */}
+      {weather && (
+        <div className="flex items-center">
+          <img src={weather.icon} alt={weather.description} className="w-8 h-8" />
+          <p className="ml-2 text-sm font-semibold">{weather.temp}°F</p>
         </div>
-      ) : (
-        <p className="text-gray-600">Fetching your location and weather data...</p>
+      )}
+
+      {/* Info Icon to Show More Details */}
+      <button
+        onClick={() => setShowDetails(!showDetails)}
+        aria-label="Show detailed weather info"
+        className="text-gray-600 hover:text-gray-800"
+      >
+        <FiInfo size={20} />
+      </button>
+
+      {/* Detailed Information */}
+      {showDetails && (
+        <div className="absolute top-12 right-0 bg-white border border-gray-300 rounded-lg p-4 shadow-lg w-64">
+          {error ? (
+            <p className="text-red-500">{error}</p>
+          ) : (
+            <>
+              {locationInfo.city && locationInfo.country && (
+                <p className="text-gray-600 mb-2">
+                  Location: {locationInfo.city}, {locationInfo.country}
+                </p>
+              )}
+              <p className="text-gray-600">
+                {weather ? (
+                  <>
+                    <strong>Weather:</strong> {weather.description}
+                  </>
+                ) : (
+                  "Fetching your location and weather data..."
+                )}
+              </p>
+            </>
+          )}
+        </div>
       )}
     </div>
   );
