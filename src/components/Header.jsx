@@ -15,7 +15,7 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         {/* Logo / Title */}
         <div className="text-xl font-bold">
-          <a href="#" className="hover:text-indigo-400">
+          <a href="/" className="hover:text-indigo-400">
             Michael's Portfolio
           </a>
         </div>

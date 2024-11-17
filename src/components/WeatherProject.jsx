@@ -29,6 +29,11 @@ const WeatherProject = () => {
         icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
         city: data.name,
       });
+      // Update locationInfo with city data if available
+      setLocationInfo((prevLocationInfo) => ({
+        ...prevLocationInfo,
+        city: data.name,
+      }));
     } catch (err) {
       console.error("Error fetching weather data:", err);
       setError("Failed to fetch weather data. Please try again later.");
@@ -50,6 +55,13 @@ const WeatherProject = () => {
     } catch (err) {
       console.error("Error fetching IP-based location:", err);
       setError("Unable to determine location via IP. Defaulting to Washington, DC.");
+      // Set default location info for Washington, DC
+      setLocationInfo({
+        latitude: defaultCoordinates.latitude,
+        longitude: defaultCoordinates.longitude,
+        city: "Washington",
+        country: "United States",
+      });
       fetchWeather(defaultCoordinates.latitude, defaultCoordinates.longitude);
     }
   };
@@ -60,7 +72,11 @@ const WeatherProject = () => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          setLocationInfo({ latitude, longitude });
+          setLocationInfo((prevLocationInfo) => ({
+            ...prevLocationInfo,
+            latitude,
+            longitude,
+          }));
           fetchWeather(latitude, longitude);
         },
         (err) => {
@@ -76,12 +92,14 @@ const WeatherProject = () => {
   }, []);
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="relative flex items-center space-x-2">
       {/* Default Weather View (icon and temperature) */}
       {weather && (
         <div className="flex items-center">
-          <img src={weather.icon} alt={weather.description} className="w-8 h-8" />
-          <p className="ml-2 text-sm font-semibold">{weather.temp}°F</p>
+          <img src={weather.icon} alt={weather.description} className="w-6 h-6" />
+          <p className="ml-2 text-sm font-semibold text-white-600 hover:text-white-800">
+            {weather.temp}°F
+          </p>
         </div>
       )}
 
@@ -89,24 +107,24 @@ const WeatherProject = () => {
       <button
         onClick={() => setShowDetails(!showDetails)}
         aria-label="Show detailed weather info"
-        className="text-gray-600 hover:text-gray-800"
+        className="text-gray-600 hover:text-gray-800 ml-2"
       >
-        <FiInfo size={20} />
+        <FiInfo size={16} />
       </button>
 
-      {/* Detailed Information */}
+      {/* Detailed Information Popup */}
       {showDetails && (
-        <div className="absolute top-12 right-0 bg-white border border-gray-300 rounded-lg p-4 shadow-lg w-64">
+        <div className="absolute top-10 left-0 bg-gray-800 text-white border border-gray-500 rounded-lg p-4 shadow-lg w-64 z-50">
           {error ? (
             <p className="text-red-500">{error}</p>
           ) : (
             <>
               {locationInfo.city && locationInfo.country && (
-                <p className="text-gray-600 mb-2">
+                <p className="text-gray-300 mb-2">
                   Location: {locationInfo.city}, {locationInfo.country}
                 </p>
               )}
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 {weather ? (
                   <>
                     <strong>Weather:</strong> {weather.description}
@@ -117,8 +135,13 @@ const WeatherProject = () => {
               </p>
             </>
           )}
+          <a href="/weather-feature-details" className="hover:text-indigo-400">
+  Weather Feature Details
+</a>
+
         </div>
       )}
+      
     </div>
   );
 };

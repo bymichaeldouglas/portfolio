@@ -12,13 +12,13 @@ const projects = [
   {
     title: "Portfolio Website",
     description: "A sleek portfolio built with React and Tailwind.",
-    imageUrl: "https://via.placeholder.com/300x200",
+    imageUrl: "/weathericon.png", // Path relative to the public directory
     link: "https://example.com/portfolio",
   },
   {
     title: "JSON Query Tool",
     description: "A tool to simplify building JSON queries.",
-    imageUrl: "./src/TectTool.jpg",
+    imageUrl: "/TectTool.png", // Path relative to the public directory
     link: "https://main.d2zzehz4b8c8cm.amplifyapp.com/",
   },
 ];
