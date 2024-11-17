@@ -5,6 +5,7 @@ import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProjectsSection from './components/ProjectsSection';
+import WeatherProject from  './components/WeatherProject';
 import Hero from "./components/Hero";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <main>
         <Hero />
         <ProjectsSection />
+        <WeatherProject />
       </main>
       <Footer />
     </div>
