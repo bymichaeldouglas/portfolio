@@ -1,15 +1,21 @@
-// src/components/WeatherProject.jsx
 import React, { useEffect, useState } from "react";
 
 const WeatherProject = () => {
-  const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState(null);
+  const [locationInfo, setLocationInfo] = useState({
+    latitude: null,
+    longitude: null,
+    city: null,
+    country: null,
+  });
+
+  const defaultCoordinates = { latitude: 38.9072, longitude: -77.0369 }; // Washington, DC
 
   // Function to fetch weather data using latitude and longitude
   const fetchWeather = async (lat, lon) => {
     try {
-      const apiKey = process.env.REACT_APP_WEATHER_API_KEY; // Securely access the API key
+      const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
       );
@@ -25,7 +31,25 @@ const WeatherProject = () => {
       setError("Failed to fetch weather data. Please try again later.");
     }
   };
-  
+
+  // Function to fetch IP-based geolocation data
+  const fetchIPLocation = async () => {
+    try {
+      const response = await fetch("https://ipapi.co/json/"); // Example IP geolocation service
+      const data = await response.json();
+      setLocationInfo({
+        latitude: data.latitude,
+        longitude: data.longitude,
+        city: data.city,
+        country: data.country_name,
+      });
+      fetchWeather(data.latitude, data.longitude);
+    } catch (err) {
+      console.error("Error fetching IP-based location:", err);
+      setError("Unable to determine location via IP. Defaulting to Washington, DC.");
+      fetchWeather(defaultCoordinates.latitude, defaultCoordinates.longitude);
+    }
+  };
 
   // Use Geolocation API to get user's location
   useEffect(() => {
@@ -33,16 +57,18 @@ const WeatherProject = () => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          setLocation({ latitude, longitude });
+          setLocationInfo({ latitude, longitude });
           fetchWeather(latitude, longitude);
         },
         (err) => {
           console.error("Error getting location:", err);
-          setError("Location access denied. Unable to fetch weather data.");
+          setError("Location access denied. Attempting IP-based location.");
+          fetchIPLocation();
         }
       );
     } else {
-      setError("Geolocation is not supported by your browser.");
+      setError("Geolocation is not supported by your browser. Attempting IP-based location.");
+      fetchIPLocation();
     }
   }, []);
 
@@ -50,11 +76,15 @@ const WeatherProject = () => {
     <div className="bg-white shadow-md rounded-lg p-6">
       <h3 className="text-xl font-bold mb-2">Weather-Based User Experience</h3>
       <p className="text-gray-600 mb-4">
-        This project demonstrates the use of the browser's Geolocation API to fetch and display weather data dynamically.
+        This project demonstrates the use of Geolocation API and IP-based fallback to fetch and display weather data.
       </p>
-      {error ? (
-        <p className="text-red-500">{error}</p>
-      ) : weather ? (
+      {error && <p className="text-red-500">{error}</p>}
+      {locationInfo.city && locationInfo.country && (
+        <p className="text-gray-600">
+          Based on available information, your location is likely near {locationInfo.city}, {locationInfo.country}.
+        </p>
+      )}
+      {weather ? (
         <div className="flex items-center space-x-4">
           <img src={weather.icon} alt={weather.description} className="w-12 h-12" />
           <div>
