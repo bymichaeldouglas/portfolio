@@ -13,7 +13,7 @@ const projects = [
     title: "Local Weather Intigration",
     description: "A sleek portfolio built with React and Tailwind.",
     imageUrl: `${process.env.PUBLIC_URL}/weathericon.png`, // Use PUBLIC_URL for correct path resolution
-    link: "/weather-feature-details",
+    link: "https://bymichaeldouglas.github.io/weather-feature-details",
   },
   {
     title: "JSON Query Tool",
