@@ -16,9 +16,10 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         {/* Logo / Title */}
         <div className="text-xl font-bold">
-        <Link to="/portfolio" className="hover:text-indigo-400">
+        <Link to={`${process.env.PUBLIC_URL}/`} className="hover:text-indigo-400">
           Michael's Portfolio
         </Link>
+
 
         </div>
 
