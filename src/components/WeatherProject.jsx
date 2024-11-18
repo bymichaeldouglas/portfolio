@@ -1,6 +1,7 @@
 // src/components/WeatherProject.jsx
 import React, { useEffect, useState } from "react";
 import { FiInfo } from "react-icons/fi"; // Info icon from react-icons
+import { Link } from "react-router-dom";
 
 const WeatherProject = () => {
   const [weather, setWeather] = useState(null);
@@ -135,9 +136,9 @@ const WeatherProject = () => {
               </p>
             </>
           )}
-          <a href="/weather-feature-details" className="hover:text-indigo-400">
-  Weather Feature Details
-</a>
+          <Link to="/weather-feature-details" className="hover:text-indigo-400">
+             Weather Feature Details
+          </Link>
 
         </div>
       )}
