@@ -16,6 +16,11 @@
       "src": "favicon-32x32.PNG",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "weathericon.png",
+      "type": "image/png",
+      "sizes": "581x565"
     }
   ],
   "start_url": ".",
