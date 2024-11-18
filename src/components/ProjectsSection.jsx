@@ -4,22 +4,16 @@ import ProjectCard from "./ProjectCard";
 
 const projects = [
   {
-    title: "Vision Automation System",
-    description: "An advanced system to automate vision inspections.",
-    imageUrl: "https://via.placeholder.com/300x200", // Placeholder
-    link: "https://github.com/example/vision-system",
+    title: "JSON Query Tool",
+    description: "A tool to simplify building JSON queries.",
+    imageUrl: `${process.env.PUBLIC_URL}/TechTool.png`, // Use PUBLIC_URL for correct path resolution
+    link: "https://main.d2zzehz4b8c8cm.amplifyapp.com/",
   },
   {
     title: "Local Weather Intigration",
     description: "A sleek portfolio built with React and Tailwind.",
     imageUrl: `${process.env.PUBLIC_URL}/weathericon.png`, // Use PUBLIC_URL for correct path resolution
     link: "https://bymichaeldouglas.github.io/weather-feature-details",
-  },
-  {
-    title: "JSON Query Tool",
-    description: "A tool to simplify building JSON queries.",
-    imageUrl: `${process.env.PUBLIC_URL}/TechTool.png`, // Use PUBLIC_URL for correct path resolution
-    link: "https://main.d2zzehz4b8c8cm.amplifyapp.com/",
   },
 ];
 
