@@ -17,7 +17,7 @@ function App() {
           <Routes>
             {/* Home Page Route */}
             <Route
-              path="/"
+              path="/portfolio/"
               element={
                 <>
                   <Hero />
