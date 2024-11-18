@@ -4,7 +4,15 @@ import React from "react";
 const WeatherFeatureDetails = () => {
   return (
     <div className="container mx-auto p-6 bg-gray-100 text-gray-800">
-      <h1 className="text-3xl font-bold mb-4">API-Driven Weather and Location Feature</h1>
+      <div className="mt-16 flex justify-center items-center max-h-[50vh]">
+        <img
+            src={`${process.env.PUBLIC_URL}/weathericon.png`}
+            className="max-h-[50vh] max-w-[33%] w-full h-auto py-4 object-cover"
+        />
+        </div>
+
+
+      <h1 className="text-3xl pt-8 font-bold mb-4">API-Driven Weather and Location Feature</h1>
       <p className="mb-4">
         The weather feature on this page showcases an advanced integration of multiple APIs to dynamically provide users with relevant weather information based on their current location.
       </p>

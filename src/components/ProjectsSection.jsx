@@ -6,19 +6,19 @@ const projects = [
   {
     title: "Vision Automation System",
     description: "An advanced system to automate vision inspections.",
-    imageUrl: "https://via.placeholder.com/300x200", // Replace with actual image URLs
+    imageUrl: "https://via.placeholder.com/300x200", // Placeholder
     link: "https://github.com/example/vision-system",
   },
   {
-    title: "Portfolio Website",
+    title: "Local Weather Intigration",
     description: "A sleek portfolio built with React and Tailwind.",
-    imageUrl: "/weathericon.png", // Path relative to the public directory
-    link: "https://example.com/portfolio",
+    imageUrl: `${process.env.PUBLIC_URL}/weathericon.png`, // Use PUBLIC_URL for correct path resolution
+    link: "/weather-feature-details",
   },
   {
     title: "JSON Query Tool",
     description: "A tool to simplify building JSON queries.",
-    imageUrl: "/TectTool.png", // Path relative to the public directory
+    imageUrl: `${process.env.PUBLIC_URL}/TechTool.png`, // Use PUBLIC_URL for correct path resolution
     link: "https://main.d2zzehz4b8c8cm.amplifyapp.com/",
   },
 ];

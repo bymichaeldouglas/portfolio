@@ -2,6 +2,7 @@
 import React from "react";
 
 const ProjectCard = ({ title, description, imageUrl, link }) => {
+  console.log(imageUrl)
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <img
