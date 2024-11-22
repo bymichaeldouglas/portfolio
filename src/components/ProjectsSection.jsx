@@ -13,13 +13,13 @@ const projects = [
     title: "JQuery React Version",
     description: "IN-PROGRESS",
     imageUrl: `${process.env.PUBLIC_URL}/JQ.png`, // Use PUBLIC_URL for correct path resolution
-    link: "${process.env.PUBLIC_URL}/jq-tt",
+    link: "/jq-tt",
   },
   {
     title: "Local Weather Intigration",
     description: "A sleek portfolio built with React and Tailwind.",
     imageUrl: `${process.env.PUBLIC_URL}/weathericon.png`, // Use PUBLIC_URL for correct path resolution
-    link: "${process.env.PUBLIC_URL}/weather-feature-details",
+    link: "/weather-feature-details",
   },
 ];
 
