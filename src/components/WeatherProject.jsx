@@ -139,11 +139,8 @@ const WeatherProject = () => {
           <Link to="/weather-feature-details" className="hover:text-indigo-400">
              Weather Feature Details
           </Link>
-          
-
         </div>
       )}
-      
     </div>
   );
 };
