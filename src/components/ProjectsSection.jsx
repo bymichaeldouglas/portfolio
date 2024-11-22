@@ -10,10 +10,16 @@ const projects = [
     link: "https://main.d2zzehz4b8c8cm.amplifyapp.com/",
   },
   {
+    title: "JQuery React Version",
+    description: "IN-PROGRESS",
+    imageUrl: `${process.env.PUBLIC_URL}/JQ.png`, // Use PUBLIC_URL for correct path resolution
+    link: "jq-tt",
+  },
+  {
     title: "Local Weather Intigration",
     description: "A sleek portfolio built with React and Tailwind.",
     imageUrl: `${process.env.PUBLIC_URL}/weathericon.png`, // Use PUBLIC_URL for correct path resolution
-    link: "https://bymichaeldouglas.github.io/weather-feature-details",
+    link: "weather-feature-details",
   },
 ];
 

@@ -38,16 +38,7 @@ const Header = () => {
         {/* Navigation Links (visible on medium and larger screens) */}
         <nav className="hidden md:flex items-center space-x-4 ml-auto">
           <a href="#about" className="hover:text-indigo-400">
-            About
-          </a>
-          <a href="#projects" className="hover:text-indigo-400">
-            Projects
-          </a>
-          <a href="#skills" className="hover:text-indigo-400">
-            Skills
-          </a>
-          <a href="#contact" className="hover:text-indigo-400">
-            Contact
+            TBD
           </a>
           {/* Weather Component (visible on medium and larger screens, furthest right) */}
           <WeatherProject />
@@ -58,16 +49,7 @@ const Header = () => {
           <div className="absolute top-16 left-0 w-full bg-gray-800 text-white shadow-lg md:hidden">
             <nav className="flex flex-col items-start space-y-4 p-4">
               <a href="#about" className="hover:text-indigo-400">
-                About
-              </a>
-              <a href="#projects" className="hover:text-indigo-400">
-                Projects
-              </a>
-              <a href="#skills" className="hover:text-indigo-400">
-                Skills
-              </a>
-              <a href="#contact" className="hover:text-indigo-400">
-                Contact
+                TBD
               </a>
             </nav>
           </div>
