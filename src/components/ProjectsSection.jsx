@@ -1,7 +1,7 @@
 // src/components/ProjectsSection.jsx
 import React from "react";
 import ProjectCard from "./ProjectCard";
-import { Link } from "react-router-dom";
+
 
 const projects = [
   {
@@ -14,7 +14,7 @@ const projects = [
     title: "JQuery React Version",
     description: "IN-PROGRESS",
     imageUrl: `${process.env.PUBLIC_URL}/JQ.png`, // Use PUBLIC_URL for correct path resolution
-    link: "/jq-tt", // Relative link to portfolio/jq-tt page
+    link: "portfolio/jq-tt", // Relative link to portfolio/jq-tt page
   },
   {
     title: "Local Weather Intigration",
